@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>v-pre & v-cloak & v-once 案例</title>
+</head>
+<body>
+    <h1>v-pre & v-cloak & v-once 案例</h1>
+    <hr>
+    <div id="app">
+        <div v-pre>{{message}}</div>
+        <div v-cloak>渲染完成后，才显示！</div>
+        <div v-once>第一次绑定的值：{{message}}</div>
+        <div><input type="text" v-model="message"></div>
+    </div>
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'hello Vue!'
+            }
+        })
+    </script>
+</body>
+</html>
