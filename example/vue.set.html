@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>Vue.set 全局操作</title>
+</head>
+<body>
+    <h1>Vue.set 全局操作</h1>
+    <hr>
+    <div id="app">
+        <ul>
+            <li v-for="good in goods">{{good.name}}-{{good.num}}</li>
+        </ul>
+        <p>共计{{count}}件商品</p>
+         <button onclick="add()">增加</button>
+         <button @click="qingkong">清空</button>
+
+    </div>
+   
+    <script type="text/javascript">
+        function add(){
+            //Vue.set(outData,'count','4');
+            var house={
+                name:'house',
+                num:1
+            }
+            outData.goods.push(house);
+            app.count ++;
+        }
+
+        var outData={
+            count:3,
+            goods:[
+                {name:'car',num:1},
+                {name:'pen',num:2}
+            ]
+        }
+
+        var app=new Vue({
+            el:'#app',
+            data:outData,
+            methods:{
+                qingkong:function(){
+                    console.log(11111);
+                    this.count=null;
+                    this.goods=null;
+                    
+                }
+            }
+        })
+    </script>
+</body>
+</html>
