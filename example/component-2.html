@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>component-2 props Demo</title>
+</head>
+<body>
+    <h1>component-2 props Demo</h1>
+    <hr>
+    <div id="app">
+        
+        <helloworld :here="message"></helloworld>
+    </div>
+
+    <script type="text/javascript">
+        
+        var helloworld = { 
+            template:`<div>my here is {{here}}.</div>`,
+            props:['here']
+            
+        }
+    
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'USA'
+            },
+            components:{
+                "helloworld":helloworld
+            }
+        })
+    </script>
+</body>
+</html>

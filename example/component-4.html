@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>component-4 component Demo</title>
+</head>
+<body>
+    <h1>component-4 component Demo</h1>
+    <hr>
+    <div id="app">
+        <component v-bind:is="who"></component>
+    </div>
+
+    <script type="text/javascript">
+
+        var pA={
+            template:'<div>this is pA</div>',
+            data:function(){
+                return {
+                    a:1
+                }
+            }
+        }
+        var pB={
+            template:'<div>this is pB</div>'
+        }
+        var pC={
+            template:'<div>this is pC</div>'
+        }
+        var pD={
+            template:'<div>this is pD</div>'
+        }
+
+        var app=new Vue({
+            el:'#app',
+            data:{
+                who:'pB'
+            },
+            components:{
+                "pA":pA,
+                "pB":pB,
+                "pC":pC,
+                "pD":pD  
+            }
+        })
+    </script>
+</body>
+</html>
