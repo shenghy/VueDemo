@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>Watch Optin Demo</title>
+</head>
+<body>
+    <h1>Watch Optin Demo</h1>
+    <hr>
+    <div id="app">
+        <p>苹果</p>
+        <p>购买数量:{{num}}</p>
+        <p><button @click="add">添加苹果数量</button></p>
+        <p><button @click="dii">减少苹果数量</button></p>
+    </div>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                num:1
+            },
+            methods:{
+                    add:function(){
+                        this.num++;
+                    },
+                    dii:function(){
+                        this.num--;
+                    }
+            }
+        })
+        //实例属性
+        app.$watch('num',function(newVal,oldVal){
+            if(newVal<1){
+                app.num=1;
+            }
+        });
+    </script>
+</body>
+</html>

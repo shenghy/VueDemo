@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>computed Optin Demo</title>
+</head>
+<body>
+    <h1>computed Option Demo</h1>
+    <hr>
+    <div id="app">
+        <p>原价:￥{{oldPrice}}</p>
+        <p>折扣:{{sale}}</p>
+        <p>现价:{{price}}</p>
+        <p><button @click="add">加价</button></p>
+        
+    </div>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                oldPrice:10,
+                sale:0.7
+            },
+            computed:{
+                price:function(){
+                    return '￥'+this.oldPrice*this.sale;
+                }
+            },
+            methods:{
+                add:function(){
+                    return this.oldPrice++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

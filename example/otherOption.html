@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>Other Option Demo</title>
+</head>
+<body>
+    <h1>Other Option Demo</h1>
+    <hr>
+    <div id="app">
+        <hello></hello>
+        <world></world>
+    </div>
+
+    <script type="text/javascript">
+        Vue.component('hello',{
+            template:`<div>{this.$parent.message}我是全局化注册的-&lt;hello&gt;</div>`,
+            //替换插值符号
+            delimiters:['{','}']
+
+        })
+
+        var world={
+            template:'<div>{{this.$parent.message}}局部注册的-&lt;world&gt</div>'
+        }
+    
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'hello Vue!'
+            },
+            components:{
+                "world":world
+            }
+        })
+    </script>
+</body>
+</html>

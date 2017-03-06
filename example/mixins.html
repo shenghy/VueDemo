@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>Mixin Optin Demo</title>
+</head>
+<body>
+    <h1>Mixin Optin Demo</h1>
+    <hr>
+    <div id="app">
+        {{ message }}
+        <p></p>
+    </div>
+
+    <script type="text/javascript">
+        //全局混入
+        Vue.mixin({
+            created:function(){
+                console.log('我是全局被混入的');
+            }
+        })
+
+
+        var aaa={
+            created:function(){
+                console.log('我是外部被混入的');
+            }
+        }
+
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'hello Vue!'
+            },
+            created:function(){
+                console.log('我是原生的');
+            },
+            mixins:[aaa]
+        })
+    </script>
+</body>
+</html>
