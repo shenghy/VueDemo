@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>Examples Method Demo</title>
+</head>
+<body>
+    <h1>Examples Method Demo</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+    <p><button onclick="destroy()">Destory Vue Example</button></p>
+    <p><button onclick="update()">Update Vue Example</button></p>
+    <p><button onclick="modify()">modify Vue Example</button></p>
+    <script type="text/javascript">
+       var header_a = Vue.extend({
+           template:'<p>{{message}}</p>',
+           data:function(){
+               return {
+                   message:'Hello my is Header'
+               }
+           },
+           destroyed:function(){
+               console.log('实例已经被卸载');
+           },
+           updated:function(){
+               console.log('实例已经被强行刷新');
+           },
+           mounted:function(){
+               console.log('实例被创建');
+           }
+       });
+       //获得实例方法
+       var app = new header_a().$mount("#app");
+
+       //卸载方法
+       function destroy(){
+            app.$destroy();
+       }
+       //刷新方法-强行刷新
+       function update(){
+            app.$forceUpdate();
+       }
+       //修改方法
+       function modify(){
+           app.message='数据被修改了';
+           app.$nextTick(function(){
+               console.log('更新完后我被调用');
+           })
+       }
+    </script>
+</body>
+</html>

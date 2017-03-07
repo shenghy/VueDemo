@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <title>Slot content extend Demo</title>
+</head>
+<body>
+    <h1>Slot content extend Demo</h1>
+    <hr>
+    <div id="app">
+        <goods v-for="good in goods">
+            <span slot="name">{{good.name}}</span>
+            <span slot="num">{{good.num}}</span>
+        </goods>
+    </div>
+
+
+    <template id="demo">
+        <p>
+            名称：<slot name='name'></slot>
+            数量：<slot name='num'></slot>
+        </p>
+
+    </template>
+
+    <script type="text/javascript">
+        var goods={
+            template:'#demo'
+        }
+
+        var app=new Vue({
+            el:'#app',
+            data:{
+                goods:[
+                    {name:'car',num:1},
+                    {name:'pen',num:20},
+                    {name:'house',num:3}
+                ]
+            },
+            components:{
+                "goods":goods
+            }
+        })
+    </script>
+</body>
+</html>

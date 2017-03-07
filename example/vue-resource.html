@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/vue.resource/1.2.1/vue-resource.min.js"></script>
+    <title>Vue-resource Demo</title>
+</head>
+<body>
+    <h1>Vue-resource Demo</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+    </div>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+                message:'hello Vue!'
+            },
+            beforeMount:function(){
+                console.log('Vue挂载之前.');
+                //get 方式请求
+                this.$http.get('/example/1.txt').then((response)=>{
+                    //success callback
+                    console.log(response);
+                    this.message=response.body;
+                },(response)=>{
+                    //error callback
+                    console.log('ajax error!');
+                });
+                //Post 方式请求
+                var formData =new FormData();
+                formData.append('a','1');
+                this.$http.post('/example/1.txt',formData).then((response)=>{
+                    //success callback
+                    console.log(response);
+                    this.message=response.body;
+                },(response)=>{
+                    //error callback
+                    console.log('ajax error!');
+                });
+            }
+        })
+    </script>
+</body>
+</html>
