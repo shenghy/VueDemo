@@ -8,30 +8,20 @@
 <body>
     <h1>Vue.extend</h1>
     <hr>
-    <div id="header"></div>
-    <div id="footer"></div>
+    <author></author>
 
     <script type="text/javascript">
-        var header_a= Vue.extend({
-            template:'<p>{{message}}</p>',
+        var authorExtend = Vue.extend({
+            template:"<p><a :href='authorUrl'>{{authorName}}</a></p>",
             data:function(){
-                return {
-                    message:'Hello , I am Header!'
+                return{
+                    authorName:'JSPang',
+                    authorUrl:'http://jspang.com'
                 }
             }
-        });
-
-        var footer_b= Vue.extend({
-            template:'<p>{{message}}</p>',
-            data:function(){
-                return {
-                    message:'Hello , I am Footer!'
-                }
-            }
-        });
-
-        new header_a().$mount('#header');
-        new footer_b().$mount('#footer');
+        });   
+       console.log(new authorExtend());
+       new authorExtend().$mount('author');
     </script>
 </body>
 </html>
