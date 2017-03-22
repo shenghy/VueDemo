@@ -3,45 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <script type="text/javascript" src="../assets/js/vue.js"></script>
-    <title>component-4 components who Demo</title>
+    <title>component-4</title>
 </head>
 <body>
-    <h1>component-4 components who Demo</h1>
+    <h1>component-4</h1>
     <hr>
     <div id="app">
-        <component v-bind:is="who"></component>
+       <component v-bind:is="who"></component>
+       <button @click="changeComponent">changeComponent</button>
     </div>
 
     <script type="text/javascript">
-
-        var pA={
-            template:'<div>this is pA</div>',
-            data:function(){
-                return {
-                    a:1
-                }
-            }
+        var componentA={
+            template:`<div style="color:red;">I'm componentA</div>`
         }
-        var pB={
-            template:'<div>this is pB</div>'
+        var componentB={
+            template:`<div style="color:green;">I'm componentB</div>`
         }
-        var pC={
-            template:'<div>this is pC</div>'
+        var componentC={
+            template:`<div style="color:pink;">I'm componentC</div>`
         }
-        var pD={
-            template:'<div>this is pD</div>'
-        }
-
+       
         var app=new Vue({
             el:'#app',
             data:{
-                who:'pB'
+                who:'componentA'
             },
             components:{
-                "pA":pA,
-                "pB":pB,
-                "pC":pC,
-                "pD":pD  
+                "componentA":componentA,
+                "componentB":componentB,
+                "componentC":componentC,
+            },
+            methods:{
+                changeComponent:function(){
+                    if(this.who=='componentA'){
+                        this.who='componentB';
+                    }else if(this.who=='componentB'){
+                        this.who='componentC';
+                    }else{
+                        this.who='componentA';
+                    }
+                }
             }
         })
     </script>
