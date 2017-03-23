@@ -3,36 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <script type="text/javascript" src="../assets/js/vue.js"></script>
-    <title>computed Optin Demo</title>
+    <title>Computed Option 计算选项</title>
 </head>
 <body>
-    <h1>computed Option Demo</h1>
+    <h1>Computed Option 计算选项</h1>
     <hr>
     <div id="app">
-        <p>原价:￥{{oldPrice}}</p>
-        <p>折扣:{{sale}}</p>
-        <p>现价:{{price}}</p>
-        <p><button @click="add">加价</button></p>
-        
+        <p>{{newPrice}}</p>
+        <ul>
+            <li v-for="item in reverseNews">{{item.title}}-{{item.date}}</li>
+        </ul>
     </div>
 
     <script type="text/javascript">
+        var newsList=[
+            {title:'香港或就“装甲车被扣”事件追责 起诉涉事运输公司',date:'2017/3/10'},
+            {title:'日本第二大准航母服役 外媒：针对中国潜艇',date:'2017/3/12'},
+            {title:'中国北方将有明显雨雪降温天气 南方阴雨持续',date:'2017/3/13'},
+            {title:'起底“最短命副市长”：不到40天落马，全家被查',date:'2017/3/23'},
+        ];
         var app=new Vue({
             el:'#app',
             data:{
-                oldPrice:10,
-                sale:0.7
+                price:100,
+                newsList:newsList
             },
-            computed:{
-                price:function(){
-                    return '￥'+this.oldPrice*this.sale;
-                }
+        computed:{
+            newPrice:function(){
+                return this.price='￥' + this.price + '元';
             },
-            methods:{
-                add:function(){
-                    return this.oldPrice++;
-                }
+            reverseNews:function(){
+                return this.newsList.reverse();
             }
+        }
         })
     </script>
 </body>
