@@ -3,39 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <script type="text/javascript" src="../assets/js/vue.js"></script>
-    <title>Watch Optin Demo</title>
+    <title>Watch option</title>
 </head>
 <body>
-    <h1>Watch Optin Demo</h1>
+    <h1>Watch option</h1>
     <hr>
     <div id="app">
-        <p>苹果</p>
-        <p>购买数量:{{num}}</p>
-        <p><button @click="add">添加苹果数量</button></p>
-        <p><button @click="dii">减少苹果数量</button></p>
+        <p>今日温度：{{temperature}}°C</p>
+        <p>穿衣建议:{{this.suggestion}}</p>
+        <p>
+            <button @click="add">添加温度</button>
+            <button @click="reduce">减少温度</button>
+
+        </p>
     </div>
 
     <script type="text/javascript">
+        var suggestion=['T恤短袖','夹克长裙','棉衣羽绒服'];
         var app=new Vue({
             el:'#app',
             data:{
-                num:1
+                temperature:14,
+                suggestion:'夹克长裙'
             },
             methods:{
-                    add:function(){
-                        this.num++;
-                    },
-                    dii:function(){
-                        this.num--;
-                    }
-            }
+                add:function(){
+                    this.temperature+=5;
+                },
+                reduce:function(){
+                    this.temperature-=5;
+                }
+            },
+            // watch:{
+            //     temperature:function(newVal,oldVal){
+            //         if(newVal>=26){
+            //             this.suggestion=suggestion[0];
+            //         }else if(newVal<26 && newVal >=0)
+            //         {
+            //             this.suggestion=suggestion[1];
+            //         }else{
+            //             this.suggestion=suggestion[2];
+            //         }
+            //     }
+            // }
+
         })
-        //实例属性
-        app.$watch('num',function(newVal,oldVal){
-            if(newVal<1){
-                app.num=1;
+        app.$watch('temperature',function(newVal,oldVal){
+            if(newVal>=26){
+                this.suggestion=suggestion[0];
+            }else if(newVal<26 && newVal >=0)
+            {
+                this.suggestion=suggestion[1];
+            }else{
+                this.suggestion=suggestion[2];
             }
-        });
+
+        })
+
     </script>
 </body>
 </html>
