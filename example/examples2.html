@@ -8,48 +8,45 @@
 <body>
     <h1>Examples Method Demo</h1>
     <hr>
-    <div id="app">
-        {{message}}
-    </div>
-    <p><button onclick="destroy()">Destory Vue Example</button></p>
-    <p><button onclick="update()">Update Vue Example</button></p>
-    <p><button onclick="modify()">modify Vue Example</button></p>
+    <div id="app"></div>
+    <p><button onclick="destroy()">卸载</button></p>
+    <p><button onclick="reload()">刷新</button></p>
+    <p><button onclick="tick()">修改</button></p>
+    
     <script type="text/javascript">
-       var header_a = Vue.extend({
-           template:'<p>{{message}}</p>',
-           data:function(){
-               return {
-                   message:'Hello my is Header'
-               }
-           },
-           destroyed:function(){
-               console.log('实例已经被卸载');
-           },
-           updated:function(){
-               console.log('实例已经被强行刷新');
-           },
-           mounted:function(){
-               console.log('实例被创建');
-           }
-       });
-       //获得实例方法
-       var app = new header_a().$mount("#app");
+      var jspang = Vue.extend({
+          template:`<p>{{message}}</p>`,
+          data:function(){
+              return {
+                  message:'Hello ,I am JSPang'
+              }
+          },
+          destroyed:function(){
+              console.log('10-destroyed 销毁之后');
+          },
+          mounted:function(){
+              console.log("4-mounted 被创建");
+          },
+          updated:function(){
+              console.log("6-updated 被更新后");
+          }
+      })
+      var vm = new jspang().$mount("#app")
 
-       //卸载方法
-       function destroy(){
-            app.$destroy();
-       }
-       //刷新方法-强行刷新
-       function update(){
-            app.$forceUpdate();
-       }
-       //修改方法
-       function modify(){
-           app.message='数据被修改了';
-           app.$nextTick(function(){
-               console.log('更新完后我被调用');
-           })
-       }
+      function destroy(){
+          vm.$destroy();
+      }
+
+      function reload(){
+          vm.$forceUpdate();
+      }
+
+function tick(){
+    vm.message="update message info ";
+    vm.$nextTick(function(){
+        console.log('message更新完后我被调用了');
+    })
+}
     </script>
 </body>
 </html>

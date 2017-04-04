@@ -14,24 +14,6 @@
     </div>
 
     <script type="text/javascript">
-        Vue.mixin({
-            created:function(){
-                console.log("我是全局混入的");
-            }
-        });
-
-        var aaa = {
-            created:function(){
-                console.log("我是外部混入的");
-            },
-            methods:{
-                add:function(){
-                    console.log('我是被扩展出来的方法！');
-                }
-            }
-
-        }
-
         var bbb={
             created:function(){
                 console.log("我是被扩展出来的");
@@ -42,7 +24,6 @@
                 }
             }
         };
-
         var app=new Vue({
             el:'#app',
             data:{
@@ -53,8 +34,8 @@
                     console.log('我是原生方法');
                 }
             },
-            mixins:[aaa],
-            extends:bbb
+            extends:bbb,
+            delimiters:['${','}']
         })
     </script>
 </body>

@@ -22,10 +22,17 @@
             //在Vue中使用jQuery
             mounted:function(){
                 $('#app').html('我是jQuery!');
+            },
+            methods:{
+                add:function(){
+                    console.log("调用了Add方法");
+                }
             }
+        
         })
         //打印app对象，看看里边都包含了什么属性和方法。
         console.log(app);
+        app.add();
     </script>
 </body>
 </html>

@@ -45,10 +45,10 @@
             app.$off('reduce');
         }
 
-        //外部调用内部事件
-        function reduce(){
-            app.$emit('reduce');
-        }
+//外部调用内部事件
+function reduce(){
+    app.$emit('reduce');
+}
         function reduceOnce(){
             app.$emit('reduceOnce');
         }
