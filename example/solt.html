@@ -9,37 +9,39 @@
     <h1>Slot content extend Demo</h1>
     <hr>
     <div id="app">
-        <goods v-for="good in goods">
-            <span slot="name">{{good.name}}</span>
-            <span slot="num">{{good.num}}</span>
-        </goods>
+    <jspang>
+        <span slot="bolgUrl">{{jspangData.bolgUrl}}</span>    
+        <span slot="netName">{{jspangData.netName}}</span>    
+        <span slot="skill">{{jspangData.skill}}</span>    
+    </jspang>
     </div>
 
 
-    <template id="demo">
-        <p>
-            名称：<slot name='name'></slot>
-            数量：<slot name='num'></slot>
-        </p>
-
-    </template>
+<template id="tmp">
+    <div>
+        <p>博客地址：<slot name="bolgUrl"></slot></p>
+        <p>网名：<slot name="netName"></slot></p>
+        <p>技术类型：<slot name="skill"></slot></p>
+        
+    </div>
+</template>
 
     <script type="text/javascript">
-        var goods={
-            template:'#demo'
+        var jspang={
+            template:'#tmp'
         }
 
         var app=new Vue({
             el:'#app',
             data:{
-                goods:[
-                    {name:'car',num:1},
-                    {name:'pen',num:20},
-                    {name:'house',num:3}
-                ]
+               jspangData:{
+                   bolgUrl:'http://jspang.com',
+                   netName:'技术胖',
+                   skill:'Web前端'
+               }
             },
             components:{
-                "goods":goods
+                "jspang":jspang
             }
         })
     </script>
